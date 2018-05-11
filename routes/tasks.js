@@ -1,15 +1,14 @@
 var models  = require('../models');
 var express = require('express');
 var router = express.Router();
+var task = models.Task;
 
-/* GET tasks listing. */
-router.get('/', function(req, res, next) {
-  var Task = models.Task;
-
-  Task.findAll()
+router.route('/')
+.get(function(req, res, next) {
+  task.findAll()
     .then(function (tasks) {
       res.format({
-        json: function(){
+        json: function() {
           res.json(tasks);
         },
         html: function(){
@@ -17,6 +16,14 @@ router.get('/', function(req, res, next) {
         }
       });
     });
+})
+.post(function (req, res) {
+  task.create({
+    title: req.body.title
+  })
+  .then(function (task) {
+    res.json(task);
+  });
 });
 
 module.exports = router;
