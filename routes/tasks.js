@@ -11,7 +11,7 @@ router.route('/')
         json: function() {
           res.json(tasks);
         },
-        html: function(){
+        html: function() {
           res.render('tasks', {tasks});
         }
       });
