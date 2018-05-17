@@ -14,7 +14,7 @@ router.route('/')
           res.json(tasks);
         },
         html: function() {
-          res.render('tasks', {tasks});
+          res.render('tasks', {tasks: tasks, title: 'Tasks'});
         }
       });
     });
@@ -27,7 +27,7 @@ router.route('/')
   .then(function (task) {
     res.status(201).json(task);
   }).catch(function(error) {
-    res.status(400).json({success: false, message: 'Something went wrong'})
+    res.status(400).json({message: 'Something went wrong'})
   });
 });
 

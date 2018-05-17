@@ -1,6 +1,9 @@
 extends layout
 
 block content
-  ul
+  h1= title
+  table
     each task in tasks
-      li= task.title
+      tr
+        td= task.title
+        td= task.lastCompleted
