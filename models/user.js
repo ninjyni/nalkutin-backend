@@ -8,6 +8,11 @@ module.exports = (sequelize, DataTypes) => {
       unique: true,
       allowNull: false,
       notEmpty: true
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      notEmpty: true
     }
   },
   {
@@ -20,11 +25,14 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
   };
 
-  User.prototype.generateHash = function(password) {
-    return bcrypt.hash(password, bcrypt.genSaltSync(8));
-  }
   User.prototype.validPassword = function(password) {
     return bcrypt.compare(password, this.password);
   }
+  User.beforeCreate(user => {
+    return bcrypt.hash(user.password, bcrypt.genSaltSync(8))
+      .then(hash => {
+        user.password = hash;
+      });
+  })
   return User;
 };

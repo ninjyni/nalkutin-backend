@@ -3,9 +3,12 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var passport = require('passport');
 
 var indexRouter = require('./routes/index');
-var tasksRouter = require('./routes/tasks');
+var loginRouter = require('./routes/login');
+var taskRouter = require('./routes/tasks');
+var userRouter = require('./routes/users');
 
 var app = express();
 
@@ -19,8 +22,20 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.disable('x-powered-by');
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
+app.use(passport.initialize());
+
 app.use('/', indexRouter);
-app.use('/tasks', tasksRouter);
+app.use('/login', loginRouter);
+app.use('/tasks', taskRouter);
+app.use('/users', userRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

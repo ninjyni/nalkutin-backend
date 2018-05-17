@@ -2,8 +2,16 @@
 
 module.exports = (sequelize, DataTypes) => {
   var Task = sequelize.define('task', {
-    title: DataTypes.STRING,
-    lastCompleted: DataTypes.DATE
+    title: {
+      type: DataTypes.STRING,
+      unique: true,
+      allowNull: false,
+      notEmpty: true
+    },
+    lastCompleted: {
+      type: DataTypes.DATE,
+      field: 'last_completed'
+    }
   },
   {
     timestamps: false,

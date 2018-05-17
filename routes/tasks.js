@@ -1,11 +1,13 @@
 var models  = require('../models');
 var express = require('express');
+var passport = require('passport');
+require('../config/passport')(passport);
 var router = express.Router();
-var task = models.Task;
+var Task = models.task;
 
 router.route('/')
 .get(function(req, res, next) {
-  task.findAll()
+  Task.findAll()
     .then(function (tasks) {
       res.format({
         json: function() {
@@ -17,12 +19,15 @@ router.route('/')
       });
     });
 })
-.post(function (req, res) {
-  task.create({
+// Allow only authenticated users to post new tasks.
+.post(passport.authenticate('jwt', {session: false}), function (req, res) {
+  Task.create({
     title: req.body.title
   })
   .then(function (task) {
-    res.json(task);
+    res.status(201).json(task);
+  }).catch(function(error) {
+    res.status(400).json({success: false, message: 'Something went wrong'})
   });
 });
 
