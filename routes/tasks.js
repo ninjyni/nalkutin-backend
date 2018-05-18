@@ -29,6 +29,15 @@ router.route('/')
   }).catch(function(error) {
     res.status(400).json({message: 'Something went wrong'})
   });
+})
+//TODO separate create/update, depending on whether existing task is found
+.put(function (req, res) {
+  Task.update(req.body, {where: {id: req.body.id}})
+  .then(function (task) {
+    res.status(200).json(task);
+  }).catch(function(error) {
+    res.status(400).json({message: 'Something went wrong'})
+  });
 });
 
 module.exports = router;
