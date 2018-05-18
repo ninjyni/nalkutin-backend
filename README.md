@@ -1,11 +1,24 @@
-# A small to-do/nagger web app
+# A small todo/nagger web app
 
 This is a web app for keeping track of recurring tasks and when they were last completed.
 
-#### Features
+### Current features
+
+Backend sends a JSON response or renders a view template, depending on request type.
+
+##### Tasks
 
 * List all tasks
-* Authenticated users can add new tasks (atm only through API calls, UI to be implemented)
+* Add new task\*
+* Update task's last completion time
+
+\*Only for authenticated users. Authentication implemented just for learning purposes.
+
+##### Users
+
+* Create a new user
+* Login
+* JWT authentication
 
 ### Application
 
@@ -18,7 +31,7 @@ This is a web app for keeping track of recurring tasks and when they were last c
 
 #### Postman
 
-The `postman` folder contains Postman collection and environment for testing API calls.
+The `postman` folder contains Postman collection and environment for testing REST calls.
 
 #### Related
 

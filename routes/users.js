@@ -2,7 +2,6 @@ var models  = require('../models');
 var express = require('express');
 var passport = require('passport');
 require('../config/passport')(passport);
-var _ = require('lodash');
 var router = express.Router();
 var user = models.user;
 
