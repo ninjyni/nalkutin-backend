@@ -25,7 +25,14 @@ router.route('/')
     title: req.body.title
   })
   .then(function (task) {
-    res.status(201).json(task);
+    res.format({
+      json: function() {
+        res.status(201).json(task);
+      },
+      html: function() {
+        res.redirect('/tasks');
+      }
+    });
   }).catch(function(error) {
     res.status(400).json({message: 'Something went wrong'})
   });

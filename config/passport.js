@@ -6,8 +6,18 @@ var User = models.user;
 
 module.exports = function(passport) {
   var opts = {}
-  opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
   opts.secretOrKey = config.secret;
+
+  opts.jwtFromRequest = ExtractJwt.fromExtractors([
+    ExtractJwt.fromAuthHeaderAsBearerToken(),
+    function(req) {
+      var token = null;
+      if (req && req.cookies) {
+          token = req.cookies['token'];
+      }
+      return token;
+    }
+  ]);
 
   passport.use(new JwtStrategy(opts, function(jwt_payload, done) {
     User.findOne({

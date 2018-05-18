@@ -19,7 +19,16 @@ router.post('/', function(req, res) {
         // Use only user id in token
         var payload = {id: user.id};
         var token = jwt.sign(payload, config.secret);
-        res.json({success: true, token: 'Bearer ' + token});
+
+        res.format({
+          json: function() {
+            res.json({success: true, token: 'Bearer ' + token});
+          },
+          html: function() {
+            res.cookie('token', token, {httpOnly: true, maxAge: 86400})
+              .redirect('/tasks');
+          }
+        });
       } else {
         res.status(401).json({success: false, message:"Passwords did not match."});
       }
