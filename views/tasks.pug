@@ -6,7 +6,7 @@ block functions
       if (dateString) {
         var date = new Date(dateString);
         var d = date.getDate();
-        var m = date.getMonth();
+        var m = date.getMonth()+1;
         var y = date.getFullYear();
         return d+'.'+m+'.'+y;
       } else {
@@ -16,7 +16,7 @@ block functions
 
 block content
   h1= title
-  table
+  table(class='table')
     tr
       th= 'Title'
       th= 'Last completed'
