@@ -26,4 +26,5 @@ block content
         td= task.title
         td #{prettyDate(task.lastCompleted)}
 
-  include newtask
+  if loggedIn
+    include newtask

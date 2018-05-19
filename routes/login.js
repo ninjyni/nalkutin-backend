@@ -25,7 +25,7 @@ router.post('/', function(req, res) {
             res.json({success: true, token: 'Bearer ' + token});
           },
           html: function() {
-            res.cookie('token', token, {httpOnly: true, maxAge: 86400})
+            res.cookie('token', token, {httpOnly: true, maxAge: 3600000})
               .redirect('/tasks');
           }
         });

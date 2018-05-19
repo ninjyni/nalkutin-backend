@@ -30,6 +30,14 @@ app.use(function(req, res, next) {
   next();
 });
 
+// Just check the presence of token cookie for now.
+app.use(function(req, res, next) {
+  if (req.cookies.token) {
+      res.locals.loggedIn = true;
+  }
+  next();
+});
+
 app.use(passport.initialize());
 
 app.use('/', indexRouter);
