@@ -25,6 +25,8 @@ block content
       tr
         td= task.title
         td #{prettyDate(task.lastCompleted)}
+        td
+          button#completeBtn(type='button' class='btn btn-primary' onClick='completeTask(' + task.id + ')') Complete
 
   if loggedIn
     include newtask

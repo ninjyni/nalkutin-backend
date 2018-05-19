@@ -39,9 +39,16 @@ router.route('/')
 })
 //TODO separate create/update, depending on whether existing task is found
 .put(function (req, res) {
-  Task.update(req.body, {where: {id: req.body.id}})
-  .then(function (task) {
-    res.status(200).json(task);
+  Task.update(req.body, {
+    where: {
+      id: req.body.id
+    },
+    returning: true,
+    plain: true
+  })
+  // Extract the updated object from result of update
+  .then(function ([affectedRows, updatedTask]) {
+    res.status(200).json(updatedTask);
   }).catch(function(error) {
     res.status(400).json({message: 'Something went wrong'})
   });
