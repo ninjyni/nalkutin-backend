@@ -6,14 +6,15 @@ var jwt = require('jsonwebtoken');
 var router = express.Router();
 var User = models.user;
 
-router.post('/', function(req, res) {
+router.route('/')
+.post(function(req, res) {
   User.findOne({
     where: {
       username: req.body.username
     }
   }).then(function(user) {
     if (!user) {
-      res.status(401).json({success: false, message:"No such user found."});
+      res.sendStatus(401);
     } else {
       if (user.validPassword(req.body.password)) {
         // Use only user id in token
@@ -26,14 +27,18 @@ router.post('/', function(req, res) {
           },
           html: function() {
             res.cookie('token', token, {httpOnly: true, maxAge: 3600000})
-              .redirect('/tasks');
+              .redirect('back');
           }
         });
       } else {
-        res.status(401).json({success: false, message:"Passwords did not match."});
+        res.sendStatus(401);
       }
     }
   });
+})
+.delete(function(req, res) {
+  res.clearCookie('token');
+  res.sendStatus(200);
 });
 
 module.exports = router;

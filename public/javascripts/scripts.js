@@ -3,8 +3,8 @@ function completeTask(taskId) {
   var time = new Date().toISOString();
 
   $.ajax({
-    method: "PUT",
-    url: "/tasks",
+    method: 'PUT',
+    url: '/tasks',
     dataType: 'json',
     data: {id: taskId, lastCompleted: time}
   })
@@ -15,6 +15,16 @@ function completeTask(taskId) {
   .fail(function(err) {
     console.log('Error', err);
   });
+};
+
+function logout() {
+  $.ajax({
+    method: 'DELETE',
+    url: '/login'
+  })
+  .done(function(data) {
+    location.reload();
+  })
 };
 
 // Update active link on navbar
