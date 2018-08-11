@@ -36,8 +36,9 @@ router.route('/')
   }).catch(function(error) {
     res.status(400).json({message: 'Something went wrong'})
   });
-})
-//TODO separate create/update, depending on whether existing task is found
+});
+
+router.route('/:id')
 .put(function (req, res) {
   Task.update(req.body, {
     where: {
@@ -48,7 +49,7 @@ router.route('/')
   })
   // Extract the updated object from result of update
   .then(function ([affectedRows, updatedTask]) {
-    res.status(200).json(updatedTask);
+    res.status(200).json(updatedTask.dataValues);
   }).catch(function(error) {
     res.status(400).json({message: 'Something went wrong'})
   });
