@@ -7,7 +7,11 @@ var Task = models.task;
 
 router.route('/')
 .get(function(req, res, next) {
-  Task.findAll()
+  Task.findAll({
+    order: [
+      ['lastCompleted', 'ASC'],
+    ]
+  })
     .then(function (tasks) {
       res.format({
         json: function() {
