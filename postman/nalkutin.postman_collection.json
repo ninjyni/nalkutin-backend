@@ -57,14 +57,49 @@
 					"raw": "{\n    \"id\": 11,\n    \"title\": \"task 11\",\n    \"lastCompleted\": \"2018-05-19T21:03:59.712Z\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:3000/tasks",
+					"raw": "http://localhost:3000/tasks/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"tasks"
+						"tasks",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE task",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt_token}}",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/tasks/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tasks",
+						"1"
 					]
 				}
 			},
