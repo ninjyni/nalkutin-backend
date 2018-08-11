@@ -27,7 +27,10 @@ block content
         td= task.title
         td #{prettyDate(task.lastCompleted)}
         td
-          button#completeBtn(type='button' class='btn btn-primary' onClick='completeTask(' + task.id + ')') Complete
+          div(class='btn-group' role='group')
+            button#removeBtn(type='button' class='btn btn-danger' onClick='removeTask(' + task.id + ')' aria-label='Remove')
+              i(class='fas fa-trash')
+            button#completeBtn(type='button' class='btn btn-primary' onClick='completeTask(' + task.id + ')') Complete
 
   if loggedIn
     include newtask

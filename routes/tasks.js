@@ -57,6 +57,18 @@ router.route('/:id')
   }).catch(function(error) {
     res.status(400).json({message: 'Something went wrong'})
   });
+})
+.delete(function (req, res) {
+  Task.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+  .then(function () {
+    res.sendStatus(200);
+  }).catch(function(error) {
+    res.status(500).json({message: 'Something went wrong'})
+  });
 });
 
 module.exports = router;

@@ -20,6 +20,19 @@ function completeTask(taskId) {
   });
 };
 
+function removeTask(taskId) {
+  $.ajax({
+    method: 'DELETE',
+    url: '/tasks/' + taskId
+  })
+  .done(function(data) {
+    location.reload();
+  })
+  .fail(function(err) {
+    console.log('Error', err);
+  });
+};
+
 function logout() {
   $.ajax({
     method: 'DELETE',

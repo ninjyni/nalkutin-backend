@@ -11,6 +11,7 @@ Backend sends a JSON response or renders a view template, depending on request t
 * List all tasks
 * Add new task\*
 * Update task's last completion time
+* Delete a task
 
 \*Only for authenticated users. Authentication implemented just for learning purposes.
 
