@@ -1,4 +1,5 @@
-button(type='button' class='btn btn-primary' data-toggle='modal' data-target='#taskFormModal') Add task
+p
+  button(type='button' class='btn btn-primary' data-toggle='modal' data-target='#taskFormModal') Add task
 
 div(class='modal fade' id='taskFormModal' tabindex='-1' role='dialog' aria-labelledby='modalLabel' aria-hidden='true')
   .modal-dialog(role='document')
@@ -8,10 +9,10 @@ div(class='modal fade' id='taskFormModal' tabindex='-1' role='dialog' aria-label
         button(type='button' class='close' aria-label='Close')
           span(aria-hidden='true') &times;
       .modal-body
-      form#taskForm(role='form' method='POST')
-        .form-group
-          label(for='title') Title:
-          input#title.form-control(type='text', placeholder='Title' name='title')
-        .modal-footer
-          button(type='button' class='btn btn-primary' data-dismiss='modal') Cancel
-          button(type='submit' class='btn btn-primary') Save
+        form#taskForm(role='form' method='POST')
+          .form-group
+            label(for='title') Title:
+            input#title.form-control(type='text', placeholder='Title' name='title' required)
+          .modal-footer
+            button(type='button' class='btn btn-primary' data-dismiss='modal') Cancel
+            button(type='submit' class='btn btn-primary') Save

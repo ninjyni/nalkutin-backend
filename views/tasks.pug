@@ -16,6 +16,12 @@ block functions
 
 block content
   h1= title
+
+  if loggedIn
+    include newtask
+  else
+    p #[a(data-toggle='modal' href='#login') Log in] to add tasks
+
   table(class='table')
     tr
       th= 'Title'
@@ -31,8 +37,3 @@ block content
             button#removeBtn(type='button' class='btn btn-danger' onClick='removeTask(' + task.id + ')' aria-label='Remove')
               i(class='fas fa-trash')
             button#completeBtn(type='button' class='btn btn-primary' onClick='completeTask(' + task.id + ')') Complete
-
-  if loggedIn
-    include newtask
-  else
-    p #[a(data-toggle='modal' href='#login') Log in] to add tasks
