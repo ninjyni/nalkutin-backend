@@ -58,7 +58,8 @@ router.route('/:id')
     res.status(400).json({message: 'Something went wrong'})
   });
 })
-.delete(function (req, res) {
+// Allow only authenticated users to delete tasks.
+.delete(passport.authenticate('jwt', {session: false}), function (req, res) {
   Task.destroy({
     where: {
       id: req.params.id
