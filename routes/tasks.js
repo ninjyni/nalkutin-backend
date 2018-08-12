@@ -38,7 +38,7 @@ router.route('/')
       }
     });
   }).catch(function(error) {
-    res.status(400).json({message: 'Something went wrong'})
+    res.status(400).json(error.errors);
   });
 });
 
