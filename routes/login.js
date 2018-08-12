@@ -17,17 +17,21 @@ router.route('/')
       res.sendStatus(401);
     } else {
       if (user.validPassword(req.body.password)) {
-        // Use only user id in token
-        var payload = {id: user.id};
-        var token = jwt.sign(payload, config.secret);
+        var payload = {
+          id: user.id,
+          expires: Date.now() + parseInt(process.env.JWT_EXPIRATION_MS || 3600000)
+        };
+        var token = jwt.sign(payload, process.env.JWT_SECRET || config.secret);
 
         res.format({
           json: function() {
             res.json({success: true, token: 'Bearer ' + token});
           },
           html: function() {
-            res.cookie('token', token, {httpOnly: true, maxAge: 3600000})
-              .redirect('back');
+            res.cookie('token', token, {
+              httpOnly: true,
+              maxAge: 3600000
+            }).redirect('back');
           }
         });
       } else {

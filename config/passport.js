@@ -6,7 +6,7 @@ var User = models.user;
 
 module.exports = function(passport) {
   var opts = {}
-  opts.secretOrKey = config.secret;
+  opts.secretOrKey = secret = process.env.JWT_SECRET || config.secret;
 
   opts.jwtFromRequest = ExtractJwt.fromExtractors([
     ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -31,5 +31,5 @@ module.exports = function(passport) {
         return done(null, false);
       }
     });
-   })
-  )};
+  }))
+};
