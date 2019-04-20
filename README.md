@@ -1,39 +1,32 @@
-# A small todo/nagger web app
+# A simple REST backend for todo/nagger apps
 
-This is a web app for keeping track of recurring tasks and when they were last completed.
+Allows keeping track of recurring tasks and when they were last completed.
 
-### Current features
-
-Backend sends a JSON response or renders a view template, depending on request type.
+### Features
 
 ##### Tasks
 
-* List all tasks
-* Add new task\*
-* Update task's last completion time
-* Delete a task\*
+- List all tasks
+- Add new task\*
+- Update task's last completion time
+- Delete a task\*
 
 \*Only for authenticated users.
 
 ##### Users
 
-* Create a new user
-* Login
-* JWT authentication
+- Create a new user
+- Login
+- JWT authentication
 
 ### Application
 
 #### Libraries
 
-* Built with [Express](https://expressjs.com/) framework. Application skeleton generated with `express-generator`.
-* [Passport](http://www.passportjs.org) for user authentication.
-* [Sequelize](http://docs.sequelizejs.com) for ORM.
-* [Pug](https://pugjs.org) as template engine.
+- Built with [Express](https://expressjs.com/) framework. Application skeleton generated with `express-generator`.
+- [Passport](http://www.passportjs.org) for user authentication.
+- [Sequelize](http://docs.sequelizejs.com) for ORM.
 
 #### Postman
 
 The `postman` folder contains Postman collection and environment for testing REST calls.
-
-#### Related
-
-See [nalkutin](https://github.com/ninjyni/nalkutin) for nalkutin Android app.
