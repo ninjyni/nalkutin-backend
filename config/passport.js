@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 var config = require('../config/config'),
   JwtStrategy = require('passport-jwt').Strategy,
   LocalStrategy = require('passport-local').Strategy,
